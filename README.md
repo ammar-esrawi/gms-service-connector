@@ -59,24 +59,24 @@ try{
   <soap:Body>
     <Signal xmlns="http://tempuri.org/">
       <PollMessageFlag>boolean</PollMessageFlag> YOU START HERE
-      <UserName>THIS IS TBD</UserName>
-      <UserPassword>THIS IS TBD</UserPassword>
+      <UserName>string</UserName>
+      <UserPassword>string</UserPassword>
       <Receiver>string</Receiver> NOT NEEDED
       <Line>string</Line> NOT NEEDED
-      <Account>we will provide range</Account> (FOR FIRST ACCOUNT TEST)
-      <SignalFormat>CID</SignalFormat>
-      <SignalCode>E140</SignalCode> THIS CODE WILL SEND GENERAL ALARM FOR INITIAL TESTING
-      <Point>1</Point> INITIAL ZONE TO USE FOR TESTING
-      <Area>string</Area> NOT NEEDED
-      <UserID>string</UserID> NOT NEEDED
-      <Text>string</Text> NOT NEEDED
+      <Account>string</Account> (FOR FIRST ACCOUNT TEST)
+      <SignalFormat>string</SignalFormat>
+      <SignalCode>string</SignalCode> THIS CODE WILL SEND GENERAL ALARM FOR INITIAL TESTING
+      <Point>string</Point> INITIAL ZONE TO USE FOR TESTING
+      <Area>string</Area>
+      <UserID>string</UserID>
+      <Text>string</Text>
       <Date>dateTime</Date>
       <ANIPhone>string</ANIPhone>
       <Longitude>decimal</Longitude> ONLY IF REQUIRED
       <Latitude>decimal</Latitude> ONLY IF REQUIRED
       <FileName>string</FileName> NOT NEEDED
       <URL>string</URL> THIS IS OPTIONL FOR LINKING TO EXTERNAL WEB SITE (Such as linking to a “Dashboard” if required or other URL)
-      <VideoType>string</VideoType> NOT NEEDED
+      <VideoType>string</VideoType>
       <TestSignalFlag>boolean</TestSignalFlag>
     </Signal>
   </soap:Body>
