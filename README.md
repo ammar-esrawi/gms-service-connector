@@ -12,9 +12,9 @@
 - edit the file ./config
 ```javascript
 const gms = {
-    baseUrl: " https://mycentralconnect.com/",
+    baseUrl: "https://mycentralconnect.com/",
     mainNameSpaceDocument: "CUSTOMER_ACCOUNT_NAME",
-    endPoint: " https://mycentralconnect.com/CUSTOMER_ACCOUNT_NAME/receiver.asmx",
+    endPoint: "https://mycentralconnect.com/CUSTOMER_ACCOUNT_NAME/receiver.asmx",
     name: "GMS ACOUNT NAME",//not used for now but it will help you distinguish your apps
     data: {
         username: "USER_NAME",
