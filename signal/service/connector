@@ -38,16 +38,17 @@ Connector.prototype.send = function (data) {
     var params = {};
     params.method = "POST"
     params.url = this.endPoint;
-    params.bodyString = Connector.makeBodyXML(data);
+    params.bodyString = this.makeBodyXML(data);
     
     var response = this.client.callApi(params);
     return response.body;
 
 }
 Connector.prototype.makeBodyXML = function (data) {
-    var template = file.read("./xmltemplate.xml");
+    var template = file.read("./xmltemplate.template");
     var fileContent = template.content;
     var body = _.template(fileContent)(data);
+    console.log(body)
     return body;
 
 }

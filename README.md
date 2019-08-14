@@ -17,6 +17,7 @@ const gms = {
     endPoint: "https://mycentralconnect.com/CUSTOMER_ACCOUNT_NAME/receiver.asmx",
     name: "GMS ACOUNT NAME",//not used for now but it will help you distinguish your apps
     data: {
+        //you can add more default config here
         username: "USER_NAME",
         password: "PASSWORD",
         account: "ACCOUNT",
@@ -30,15 +31,15 @@ const gms = {
 var gmsModule = require('./GMS');
 
 var gms=new gmsModule.GMS();
-var cnMngr=mt.getConnectorManager();
+var cnMngr=gms.getConnectorManager();
 var myConnector=cnMngr.getConnector();
 
 
 var data={
-    "SignalFormat": "CID",
-    "SignalCode": "E140",
-    "Point": "1",
-    "URL": "SOME_URL",
+    "signalformat": "CID",
+    "signalcode": "E140",
+    "point": "1",
+    "url": "SOME_URL",
 };
 
 try{
@@ -51,6 +52,7 @@ try{
 }
 ```
 - the data object is a mapping of the soap service api body
+- use lower case
 ## XML document définition
 
 ```xml

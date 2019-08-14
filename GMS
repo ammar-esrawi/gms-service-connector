@@ -1,6 +1,6 @@
 var configModule = require("./config");
 var clientModule = require("./client");
-var conMngr = require("./webhook/incoming/connectormanager");
+var conMngr = require("./signal/service/connectormanager");
 
 /**
  * GMS Manager
@@ -29,7 +29,7 @@ function GMS(config) {
  * @method  getConnector
  * @return {Object} : Connector Instance
  */
-MicrosoftTeams.prototype.getConnectorManager = function() {
+GMS.prototype.getConnectorManager = function() {
   
     if (!this.connectorManager) {
         this.connectorManager = new conMngr.ConnectorManager({

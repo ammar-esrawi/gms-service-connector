@@ -5,6 +5,7 @@ const gms = {
     endPoint: "https://mycentralconnect.com/CUSTOMER_ACCOUNT_NAME/receiver.asmx",
     name: "GMS ACOUNT NAME",//not used for now but it will help you distinguish your apps
     data: {
+        //you can add more default config here
         username: "USER_NAME",
         password: "PASSWORD",
         account: "ACCOUNT",
