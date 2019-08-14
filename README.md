@@ -61,8 +61,8 @@ try{
       <PollMessageFlag>boolean</PollMessageFlag> YOU START HERE
       <UserName>string</UserName>
       <UserPassword>string</UserPassword>
-      <Receiver>string</Receiver> NOT NEEDED
-      <Line>string</Line> NOT NEEDED
+      <Receiver>string</Receiver>
+      <Line>string</Line>
       <Account>string</Account> (FOR FIRST ACCOUNT TEST)
       <SignalFormat>string</SignalFormat>
       <SignalCode>string</SignalCode> THIS CODE WILL SEND GENERAL ALARM FOR INITIAL TESTING
