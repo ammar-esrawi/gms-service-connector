@@ -1,75 +1,43 @@
-# MSTeam Connector
-- A simple connector to the Microsoft Teams platform
-- allows developers to send messages to a MSTeams Channel from their scripts.
+# GMS Connector
+- A simple connector to the GMS Signal Service
+- allows developers to send messages to a GMS Signal Service from their scripts.
 
 ## Pre-requisites
-- admin access to MSTeams Instance 
-- install Incoming Webhook App
-- configure connectors to the needed channels
-- hands on the connectors URIs
+- account in GMS Signal Service
+- underscore module installed in Scriptr.io IDE
+
 
 ## Configure the connector
 
 - edit the file ./config
 ```javascript
-const team = {
-    baseUrl:"https://outlook.office.com/webhook/",
-    name: "Test Team",//not used for now but it will help you distinguish your apps
-    channels: {
-        //add all your channels 
-        <ChannelName>: "<IncomingWebhookURI>",
-        
-    },
-    defaultChannel: "general"
+const gms = {
+    baseUrl: " https://mycentralconnect.com/",
+    mainNameSpaceDocument: "convergia1",
+    endPoint: " https://mycentralconnect.com/convergia1/receiver.asmx",
+    name: "GMS Test",//not used for now but it will help you distinguish your apps
+    data: {
+        username: "C0@verGiX",
+        password: "Co@vergIx!",
+        account: "900410001",
+    }
+
 };
 ```
 ## Use the connector
 ```javascript
-var mscModule = require('./MicrosoftTeams');
+var gmsModule = require('./GMS');
 
-var mt=new mscModule.MicrosoftTeams();
+var gms=new gmsModule.GMS();
 var cnMngr=mt.getConnectorManager();
-var myConnector=cnMngr.getConnector("general");
-```
-## Send Message to the channel
-```javascript
-var msg={
-    "@context": "https://schema.org/extensions",
-    "@type": "MessageCard",
-    "potentialAction": [
-        {
-            "@type": "OpenUri",
-            "name": "View All Tweets",
-            "targets": [
-                {
-                    "os": "default",
-                    "uri": "https://twitter.com/search?q=%23MicrosoftTeams"
-                }
-            ]
-        }
-    ],
-    "sections": [
-        {
-            "facts": [
-                {
-                    "name": "Posted By:",
-                    "value": ""
-                },
-                {
-                    "name": "Posted At:",
-                    "value": ""
-                },
-                {
-                    "name": "Tweet:",
-                    "value": ""
-                }
-            ],
-            "text": "A tweet with #MicrosoftTeams has been posted:"
-        }
-    ],
-    "summary": "Tweet Posted",
-    "themeColor": "0072C6",
-    "title": "Tweet Posted"
+var myConnector=cnMngr.getConnector();
+
+
+var data={
+    "SignalFormat": "CID",
+    "SignalCode": "E140",
+    "Point": "1",
+    "URL": "SOME_URL",
 };
 
 try{
@@ -81,6 +49,79 @@ try{
     return exception;
 }
 ```
-- the message object is a Microsoft Message Card 
-- A Card is structured using JSON. I won’t go over all permutations of a Card (as they differ between Card types) - the Microsoft Docs do a pretty good job explaining it, though - https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/cards/cards-reference
-If you wish to test your JSON for a Message Card before using in Teams, I recommend using the Message Card Playground website - https://messagecardplayground.azurewebsites.net/ - it allows you to visualize the layout and view sample code.
+- the data object is a mapping of the soap service api body
+## XML document définition
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="set timehttp://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <Signal xmlns="http://tempuri.org/">
+      <PollMessageFlag>boolean</PollMessageFlag> YOU START HERE
+      <UserName>THIS IS TBD</UserName>
+      <UserPassword>THIS IS TBD</UserPassword>
+      <Receiver>string</Receiver> NOT NEEDED
+      <Line>string</Line> NOT NEEDED
+      <Account>we will provide range</Account> (FOR FIRST ACCOUNT TEST)
+      <SignalFormat>CID</SignalFormat>
+      <SignalCode>E140</SignalCode> THIS CODE WILL SEND GENERAL ALARM FOR INITIAL TESTING
+      <Point>1</Point> INITIAL ZONE TO USE FOR TESTING
+      <Area>string</Area> NOT NEEDED
+      <UserID>string</UserID> NOT NEEDED
+      <Text>string</Text> NOT NEEDED
+      <Date>dateTime</Date>
+      <ANIPhone>string</ANIPhone>
+      <Longitude>decimal</Longitude> ONLY IF REQUIRED
+      <Latitude>decimal</Latitude> ONLY IF REQUIRED
+      <FileName>string</FileName> NOT NEEDED
+      <URL>string</URL> THIS IS OPTIONL FOR LINKING TO EXTERNAL WEB SITE (Such as linking to a “Dashboard” if required or other URL)
+      <VideoType>string</VideoType> NOT NEEDED
+      <TestSignalFlag>boolean</TestSignalFlag>
+    </Signal>
+  </soap:Body>
+</soap:Envelope>
+```
+
+## parameters
+- All of the parameters are optional parameters.
+
+### PollMessageFlag
+When this is set to true stages will mark the task as operational and not process the message.
+ 
+### UserName & UserPassword
+The Signal Server may optionally be set up to require a User Name and Password with each signal. If this is required a Valid Stages UserName and UserPassword must be supplied.
+### Receiver
+This is a string which can be used to identify a specific receiver. This field can be included in the definition of a Stages Xmit#.
+### Line
+This is a string which can be used to identify the line where the signal was received. This field can be included in the definition of a Stages Xmit#.
+### Account
+This is a string which can be used to identify the device that generated the signal. This field can be included in the definition of a Stages Xmit#.Account
+### SignalFormat
+This defines the meaning of the SignalCode Parameter. Common values are “SIA” or “CID”
+### SignalCode
+Stages will interpret this based on the Signal Format. Often this is a SIA code or a Contact ID code.
+### Point
+The point or zone that generated the signal.
+### Area
+The area of protection.
+### UserID
+The panel User ID.
+### Text
+A free form comment.
+### Date
+The date and time of the signal. 
+### ANIPhone
+The phone number of the line generating the signal.
+### Longitude
+The decimal representation of the longitude associated with the signal
+### Latitude
+The decimal representation of the latitude associated with the signal
+### FileName
+Contains the full path name of related file.
+### URL
+An address associated with the message.
+### VideoType
+Defines the type of Video associated with the message.
+### TestSignalFlag
+When this is set to true stages will interpret the signal as a test signal. The signal will be logged to the account and not generate an alarm.
+

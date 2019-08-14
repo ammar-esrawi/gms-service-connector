@@ -1,13 +1,13 @@
 //The gms Info 
 const gms = {
     baseUrl: " https://mycentralconnect.com/",
-    mainNameSpaceDocument: "convergia1",
-    endPoint: " https://mycentralconnect.com/convergia1/receiver.asmx",
-    name: "GMS Test",//not used for now but it will help you distinguish your apps
+    mainNameSpaceDocument: "CUSTOMER_ACCOUNT_NAME",
+    endPoint: " https://mycentralconnect.com/CUSTOMER_ACCOUNT_NAME/receiver.asmx",
+    name: "GMS ACOUNT NAME",//not used for now but it will help you distinguish your apps
     data: {
-        username: "C0@verGiX",
-        password: "Co@vergIx!",
-        account: "900410001",
+        username: "USER_NAME",
+        password: "PASSWORD",
+        account: "ACCOUNT",
     }
 
 };
