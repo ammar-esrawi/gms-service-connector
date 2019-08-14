@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="set timehttp://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <Signal xmlns="http://tempuri.org/">
+      <PollMessageFlag><%= PollMessageFlag %></PollMessageFlag>
+      <UserName><%= UserName %></UserName>
+      <UserPassword><%= UserPassword %></UserPassword>
+      <Receiver><%= Receiver %></Receiver>
+      <Line><%= Line %></Line>
+      <Account><%= Account %></Account>
+      <SignalFormat><%= SignalFormat %></SignalFormat>
+      <SignalCode><%= SignalCode %></SignalCode>
+      <Point><%= Point %></Point>
+      <Area><%= Area %></Area>
+      <UserID><%= UserID %></UserID>
+      <Text><%= Text %></Text>
+      <Date><%= Date %></Date>
+      <ANIPhone><%= ANIPhone %></ANIPhone>
+      <Longitude><%= Longitude %></Longitude>
+      <Latitude><%= Latitude %></Latitude>
+      <FileName><%= FileName %></FileName>
+      <URL><%= URL %></URL>
+      <VideoType><%= VideoType %></VideoType>
+      <TestSignalFlag><%= TestSignalFlag %></TestSignalFlag>
+    </Signal>
+  </soap:Body>
+</soap:Envelope>
