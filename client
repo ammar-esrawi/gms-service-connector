@@ -65,7 +65,7 @@ Client.prototype._callApi = function(reqparams) {
 
     params.url = params.url.indexOf("http") > -1 ? params.url : this.endPoint + "/"  + params.url;
     if(params.bodyString){
-        params.headers["Content-Type"] =  "application/json";
+        params.headers["Content-Type"] =  "text/xml";
     }
 
     console.log(JSON.stringify(params));

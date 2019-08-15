@@ -14,9 +14,10 @@ var data={
 
 try{
     
-    return myConnector.send(
-    msg
-);
+    var result= myConnector.send(
+        data
+    );
+  	return xmlToJson(result);
 }catch(exception){
     return exception;
 }
