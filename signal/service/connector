@@ -1,6 +1,8 @@
 var config = require("../../config");
 var _ = require("modules/underscore/underscore.js")._;
 var file =  require("file");
+var log = require("log"); 
+log.setLevel("info");
 /**
  * Wrapper of the GMS Signal Service APIs
  * @class Connector
@@ -30,11 +32,12 @@ function Connector(dto) {
  */
 Connector.prototype.send = function (data) {
     //fill missing data from config
+  	log.info("BEFORE data is :"+JSON.stringify(data))
     for(var key in config.gms.data){
         if(!data[key])
         data[key] = config.gms.data[key];
     }
-
+		log.info("AFTER data is :"+JSON.stringify(data))
     var params = {};
     params.method = "POST"
     params.url = this.endPoint;
@@ -48,7 +51,7 @@ Connector.prototype.makeBodyXML = function (data) {
     var template = file.read("./xmltemplate.template");
     var fileContent = template.content;
     var body = _.template(fileContent)(data);
-    console.log(body)
+    log.info("body is : "+ body);
     return body;
 
 }
